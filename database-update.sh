@@ -56,7 +56,10 @@ if mysql -h $LOCAL_DATABASE_HOST -u $LOCAL_DATABASE_USER -p$LOCAL_DATABASE_PASS 
 	# Upload dump to local database
 	echo Importing database \'remote-database-$CURRENT_TIME.sql\' to local server: $LOCAL_DATABASE_HOST
 	mysql -h $LOCAL_DATABASE_HOST -u $LOCAL_DATABASE_USER -p$LOCAL_DATABASE_PASS $LOCAL_DATABASE_NAME < $CONFIG/dumps/remote-database-$CURRENT_TIME.sql
-
+	
+	# Remove dumps directory so no sql files laying around
+	rm -r $CONFIG/dumps
+	
 	echo COMPLETE: Database update complete: $LOCAL_DATABASE_NAME
 
 else
