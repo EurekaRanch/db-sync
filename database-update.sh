@@ -41,7 +41,7 @@ if mysql -h $LOCAL_DATABASE_HOST -u $LOCAL_DATABASE_USER -p$LOCAL_DATABASE_PASS 
 
 	# Download database dump
 	echo Exporting database \'$REMOTE_DATABASE_NAME\' from remote server: $REMOTE_DATABASE_HOST
-	mysqldump -v --extended-insert -h $REMOTE_DATABASE_HOST -u $REMOTE_DATABASE_USER -p$REMOTE_DATABASE_PASS $REMOTE_DATABASE_NAME > $CONFIG/dumps/remote-database-$CURRENT_TIME.sql
+	mysqldump -v --single-transaction --quick --skip-lock-tables -h $REMOTE_DATABASE_HOST -u $REMOTE_DATABASE_USER -p$REMOTE_DATABASE_PASS $REMOTE_DATABASE_NAME > $CONFIG/dumps/remote-database-$CURRENT_TIME.sql
 
 	echo Remote database exported: remote-database-$CURRENT_TIME.sql
 	
